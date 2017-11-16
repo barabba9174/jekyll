@@ -1,0 +1,19 @@
+<ul>
+    {% for phases in  site.data.main.phases %}
+        {% assign phase = site.data[phases] %}
+        {% if phase %}
+                {% for blocks in phase.blocks %}
+                    {% assign block = site.data[blocks] %}
+                    {% if block %}
+                        {% for activities in block.activities %}
+                            {% assign item_url = activities | prepend:"/activities/" | append:"/" %}
+                            {% assign activity = site.activities | where:"url", item_url | first %}
+                            {% if activity %}
+                                <li class="{% if activity.url == page.url %}current{% endif %}"><a href="{{ activity.url }}">{{ activity.title }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+        {% endif %}
+    {% endfor %}
+</ul>

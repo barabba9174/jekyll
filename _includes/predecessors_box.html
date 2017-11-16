@@ -1,0 +1,13 @@
+{% assign predecessors = page.predecessors | join: "" %}
+{% if predecessors != '' %}
+  <h2>Predecessors box</h2>
+  <ul>
+  {% for item in page.predecessors %}
+    {% assign item_url = item | prepend:"/activities/" | append:"/" %}
+    {% assign p = site.activities | where:"url", item_url | first %}
+    {% if p %}
+      <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% endif %}

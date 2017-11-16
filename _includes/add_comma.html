@@ -1,0 +1,7 @@
+{% if include.items.last == '' %}
+    {% assign otherLast = include.items.size | minus: 2 %}
+    {% assign last = include.items[otherLast] %}
+    {% if last == include.actual %}{% else %},{% endif %}
+{% else %}
+    {% if include.items.last == include.actual %}{% else %},{% endif %}
+{% endif %}
